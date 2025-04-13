@@ -1,0 +1,35 @@
+# 预训练模型文件
+CosyVoice/pretrained_models/
+Echomimic/pretrained_weights/
+.huggingface/
+
+# 环境文件
+CosyVoice/Cosyvoice1/
+Echomimic/.glut/
+
+# 输出和结果文件
+CosyVoice/outputs/
+results/
+temp/
+
+# Python缓存文件
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# 虚拟环境
+env/
+venv/
+ENV/
+
+# IDE相关文件
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 系统文件
+.DS_Store
+Thumbs.db 
