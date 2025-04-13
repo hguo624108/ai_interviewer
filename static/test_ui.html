@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>虚拟面试官 - 测试界面</title>
+    <title>Virtual Interviewer - Test Interface</title>
     <style>
         body {
-            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            font-family: Arial, sans-serif;
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
@@ -129,90 +129,90 @@
     </style>
 </head>
 <body>
-    <h1>虚拟面试官测试界面</h1>
+    <h1>Virtual Interviewer Test Interface</h1>
     
     <div class="container">
-        <h2>自定义面试官</h2>
+        <h2>Custom Interviewer</h2>
         
         <form id="customForm">
             <div class="form-group">
-                <label>面试问题列表：</label>
+                <label>Interview Questions:</label>
                 <div class="questions-container">
                     <div id="questionsContainer">
                         <div class="question-item">
-                            <input type="text" name="question" placeholder="输入面试问题" required>
-                            <button type="button" class="remove-question">删除</button>
+                            <input type="text" name="question" placeholder="Enter interview question" required>
+                            <button type="button" class="remove-question">Delete</button>
                         </div>
                     </div>
-                    <button type="button" class="add-question" id="addQuestion">+ 添加问题</button>
+                    <button type="button" class="add-question" id="addQuestion">+ Add Question</button>
                 </div>
             </div>
             
             <div class="form-group">
-                <label>面试官形象图片：</label>
+                <label>Interviewer Image:</label>
                 <input type="file" id="imageFile" accept="image/jpeg, image/png" required>
             </div>
             
             <div class="form-group">
-                <label>面试官音色样本：</label>
+                <label>Interviewer Voice Sample:</label>
                 <input type="file" id="voiceFile" accept="audio/wav" required>
             </div>
             
-            <button type="submit">开始生成</button>
+            <button type="submit">Generate</button>
         </form>
     </div>
     
     <div class="container">
-        <h2>使用默认资源</h2>
+        <h2>Use Default Resources</h2>
         
         <form id="defaultForm">
             <div class="form-group">
-                <label>面试问题列表：</label>
+                <label>Interview Questions:</label>
                 <div class="questions-container">
                     <div id="defaultQuestionsContainer">
                         <div class="question-item">
-                            <input type="text" name="question" placeholder="输入面试问题" required>
-                            <button type="button" class="remove-question">删除</button>
+                            <input type="text" name="question" placeholder="Enter interview question" required>
+                            <button type="button" class="remove-question">Delete</button>
                         </div>
                     </div>
-                    <button type="button" class="add-question" id="addDefaultQuestion">+ 添加问题</button>
+                    <button type="button" class="add-question" id="addDefaultQuestion">+ Add Question</button>
                 </div>
             </div>
             
             <div class="form-group">
-                <label>选择面试官形象：</label>
+                <label>Select Interviewer Avatar:</label>
                 <select id="imageType" required>
-                    <option value="male_interviewer">男性面试官</option>
-                    <option value="female_interviewer">女性面试官</option>
+                    <option value="male_interviewer">Male Interviewer</option>
+                    <option value="female_interviewer">Female Interviewer</option>
                 </select>
             </div>
             
             <div class="form-group">
-                <label>选择音色：</label>
+                <label>Select Voice Type:</label>
                 <select id="voiceType" required>
-                    <option value="male_voice">男性音色</option>
-                    <option value="female_voice">女性音色</option>
+                    <option value="male_voice">Male Voice</option>
+                    <option value="female_voice">Female Voice</option>
                 </select>
             </div>
             
-            <button type="submit">开始生成</button>
+            <button type="submit">Generate</button>
         </form>
     </div>
     
     <div class="container result-container" id="resultContainer">
-        <h2>处理结果</h2>
-        <div class="loading" id="loading">正在处理中</div>
+        <h2>Processing Results</h2>
+        <div class="loading" id="loading">Processing</div>
         
         <div id="taskInfo">
-            <p>任务ID: <span id="taskId"></span></p>
-            <p>状态: <span id="taskStatus"></span></p>
+            <p>Task ID: <span id="taskId"></span></p>
+            <p>Status: <span id="taskStatus"></span></p>
         </div>
         
         <div class="video-container" id="videoContainer"></div>
     </div>
     
     <script>
-        // 添加问题按钮事件
+        // Add question button events
         document.getElementById('addQuestion').addEventListener('click', function() {
             addQuestionField('questionsContainer');
         });
@@ -221,7 +221,7 @@
             addQuestionField('defaultQuestionsContainer');
         });
         
-        // 动态添加问题输入字段
+        // Dynamically add question input fields
         function addQuestionField(containerId) {
             const container = document.getElementById(containerId);
             const questionItem = document.createElement('div');
@@ -230,13 +230,13 @@
             const input = document.createElement('input');
             input.type = 'text';
             input.name = 'question';
-            input.placeholder = '输入面试问题';
+            input.placeholder = 'Enter interview question';
             input.required = true;
             
             const removeBtn = document.createElement('button');
             removeBtn.type = 'button';
             removeBtn.className = 'remove-question';
-            removeBtn.textContent = '删除';
+            removeBtn.textContent = 'Delete';
             removeBtn.addEventListener('click', function() {
                 container.removeChild(questionItem);
             });
@@ -246,19 +246,19 @@
             container.appendChild(questionItem);
         }
         
-        // 为已有的删除按钮添加事件
+        // Add events to existing delete buttons
         document.querySelectorAll('.remove-question').forEach(button => {
             button.addEventListener('click', function() {
                 const container = this.parentElement.parentElement;
                 if (container.querySelectorAll('.question-item').length > 1) {
                     container.removeChild(this.parentElement);
                 } else {
-                    alert('至少需要保留一个问题');
+                    alert('At least one question is required');
                 }
             });
         });
         
-        // 自定义表单提交
+        // Custom form submission
         document.getElementById('customForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -267,12 +267,12 @@
                 .filter(q => q.trim() !== '');
                 
             if (questions.length === 0) {
-                alert('请至少输入一个问题');
+                alert('Please enter at least one question');
                 return;
             }
             
             if (questions.length > 10) {
-                alert('最多只能提交10个问题');
+                alert('Maximum 10 questions allowed');
                 return;
             }
             
@@ -280,19 +280,19 @@
             const voiceFile = document.getElementById('voiceFile').files[0];
             
             if (!imageFile) {
-                alert('请选择面试官形象图片');
+                alert('Please select an interviewer image');
                 return;
             }
             
             if (!voiceFile) {
-                alert('请选择面试官音色样本');
+                alert('Please select a voice sample');
                 return;
             }
             
-            // 创建FormData对象
+            // Create FormData object
             const formData = new FormData();
             
-            // 添加多个问题
+            // Add multiple questions
             questions.forEach(q => {
                 formData.append('questions', q);
             });
@@ -303,7 +303,7 @@
             submitInterview('/interview/custom', formData);
         });
         
-        // 默认资源表单提交
+        // Default resources form submission
         document.getElementById('defaultForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -312,22 +312,22 @@
                 .filter(q => q.trim() !== '');
                 
             if (questions.length === 0) {
-                alert('请至少输入一个问题');
+                alert('Please enter at least one question');
                 return;
             }
             
             if (questions.length > 10) {
-                alert('最多只能提交10个问题');
+                alert('Maximum 10 questions allowed');
                 return;
             }
             
             const imageType = document.getElementById('imageType').value;
             const voiceType = document.getElementById('voiceType').value;
             
-            // 创建FormData对象
+            // Create FormData object
             const formData = new FormData();
             
-            // 添加多个问题
+            // Add multiple questions
             questions.forEach(q => {
                 formData.append('questions', q);
             });
@@ -338,9 +338,9 @@
             submitInterview('/interview/default', formData);
         });
         
-        // 提交面试任务
+        // Submit interview task
         function submitInterview(url, formData) {
-            // 显示结果区域和加载状态
+            // Show result area and loading status
             document.getElementById('resultContainer').style.display = 'block';
             document.getElementById('loading').style.display = 'block';
             document.getElementById('videoContainer').innerHTML = '';
@@ -351,28 +351,28 @@
             })
             .then(response => response.json())
             .then(data => {
-                console.log('提交成功:', data);
+                console.log('Submission successful:', data);
                 
                 document.getElementById('taskId').textContent = data.task_id;
                 document.getElementById('taskStatus').textContent = data.status;
                 
-                // 开始轮询任务状态
+                // Start polling task status
                 pollTaskStatus(data.task_id);
             })
             .catch(error => {
-                console.error('提交失败:', error);
-                alert('提交失败: ' + error);
+                console.error('Submission failed:', error);
+                alert('Submission failed: ' + error);
                 document.getElementById('loading').style.display = 'none';
             });
         }
         
-        // 轮询任务状态
+        // Poll task status
         function pollTaskStatus(taskId) {
             const interval = setInterval(() => {
                 fetch(`/interview/task/${taskId}`)
                 .then(response => response.json())
                 .then(data => {
-                    console.log('任务状态:', data);
+                    console.log('Task status:', data);
                     
                     document.getElementById('taskStatus').textContent = data.status;
                     
@@ -380,26 +380,26 @@
                         clearInterval(interval);
                         document.getElementById('loading').style.display = 'none';
                         
-                        // 显示结果
+                        // Display results
                         if (data.results && data.results.length > 0) {
                             displayResults(data.results);
                         }
                         
                         if (data.error) {
-                            alert('处理失败: ' + data.error);
+                            alert('Processing failed: ' + data.error);
                         }
                     }
                 })
                 .catch(error => {
-                    console.error('获取任务状态失败:', error);
+                    console.error('Failed to get task status:', error);
                     clearInterval(interval);
                     document.getElementById('loading').style.display = 'none';
-                    alert('获取任务状态失败: ' + error);
+                    alert('Failed to get task status: ' + error);
                 });
-            }, 3000); // 每3秒检查一次
+            }, 3000); // Check every 3 seconds
         }
         
-        // 显示结果
+        // Display results
         function displayResults(results) {
             const container = document.getElementById('videoContainer');
             container.innerHTML = '';
@@ -409,7 +409,7 @@
                 item.className = 'video-item';
                 
                 const title = document.createElement('h3');
-                title.textContent = `问题 ${index + 1}: ${result.question}`;
+                title.textContent = `Question ${index + 1}: ${result.question}`;
                 
                 const status = document.createElement('span');
                 status.className = `status status-${result.status}`;
@@ -427,7 +427,7 @@
                     
                     const downloadLink = document.createElement('a');
                     downloadLink.href = result.video_url;
-                    downloadLink.textContent = '下载视频';
+                    downloadLink.textContent = 'Download Video';
                     downloadLink.style.display = 'block';
                     downloadLink.style.marginTop = '10px';
                     downloadLink.download = `interview_${result.video_id}.mp4`;
@@ -435,7 +435,7 @@
                 } else if (result.status === 'failed' && result.error) {
                     const error = document.createElement('p');
                     error.style.color = 'red';
-                    error.textContent = `错误: ${result.error}`;
+                    error.textContent = `Error: ${result.error}`;
                     item.appendChild(error);
                 }
                 
